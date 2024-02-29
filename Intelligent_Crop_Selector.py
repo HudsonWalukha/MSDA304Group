@@ -1,16 +1,15 @@
-
-import streamlit as st
 import pickle
+import streamlit as st
 import numpy as np
+import pandas as pd
+import tensorflow as tf
+from tensorflow.keras.models import load_model
 
-# Load the pickled model
-with open('Intelligent_Crop_Selector.pkl', 'rb') as model_file:
-    model = pickle.load(model_file)
-
-# Load the label encoder for decoding crop names
+# Load the model in Keras format
+model = load_model('Intelligent_Crop_Selector')
+#load the pickled label encoder for one-hot encoding
 with open('label_encoder.pkl', 'rb') as label_encoder_file:
     label_encoder = pickle.load(label_encoder_file)
-
 # Load the scaler for standardizing input features
 with open('scaler.pkl', 'rb') as scaler_file:
     scaler = pickle.load(scaler_file)
